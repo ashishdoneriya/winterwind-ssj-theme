@@ -1,0 +1,18 @@
+---
+layout:default.html
+---
+
+<section class="section text-block">
+  <h3 class="section-heading">Latest Articles</h3>
+  <ul class="article-list-short">
+    #foreach($post in $site.posts)
+    <li>
+      <a href="$post.url"
+        class="post-title-link">$post.title</a>
+    </li>
+    #end
+  </ul>
+</section>
+<section class="section text-block">
+
+</section>

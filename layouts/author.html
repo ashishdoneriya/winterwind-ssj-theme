@@ -1,0 +1,17 @@
+---
+layout:default.html
+---
+<section class="app-page text-block">
+  <h3 class="section-heading">Author : $author.name</h3>
+  <ul class="article-list-short">
+    #if( $paginator.totalPages > 0)
+    #foreach( $post in $paginator.posts )
+    <li><a href="$post.url" class="post-title-link">$post.title</a></li>
+    #end
+    #else
+    <p>There are no posts for this category.</p>
+    #end
+  </ul>
+</section>
+<section class="section text-block">
+</section>
