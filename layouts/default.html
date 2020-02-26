@@ -14,7 +14,6 @@
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 	<link href="assets/theme/css/style.css" rel='stylesheet' type='text/css'>
-	<link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu+Mono&display=swap" rel="stylesheet">
 </head>
 	<body>
 	 
@@ -35,9 +34,9 @@
 		</div>
 		<footer class="site-footer">
 			<ul class="footer-nav">
-		#foreach ($page in $site.pages) 
-		<li><a href="$page.url">$page.title</a></li>
-		#end
+				#foreach ($page in $site.pages) 
+				<li><a href="$page.url">$page.title</a></li>
+				#end
 			</ul>
 			<p>
 				<a href="https://twitter.com/paulswail" target="_blank" rel="noopener"><i class="fab fa-twitter fa-fw"></i> Twitter</a>
@@ -54,7 +53,7 @@
 				var x = d.createElement("link");
 				var y = d.getElementsByTagName("script")[0];
 				x.rel = "stylesheet";
-				x.href = "https://fonts.googleapis.com/css?family=Lato:400,400i,700|Merriweather:400,400i,700,700i&display=swap";
+				x.href = "https://fonts.googleapis.com/css?family=Roboto|Ubuntu+Mono&display=swap";
 				y.parentNode.insertBefore(x, y);
 			})(document);
 		</script>
