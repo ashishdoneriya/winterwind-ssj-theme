@@ -1,5 +1,5 @@
-/* PrismJS 1.19.0
-https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+go+java+javadoc+javadoclike+javastacktrace+js-templates+json+jsonp+less+markup-templating+php+phpdoc+php-extras+python+sql&plugins=line-numbers+toolbar+copy-to-clipboard+download-button */
+/* PrismJS 1.20.0
+https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+bash+css-extras+git+go+java+javadoc+javadoclike+javastacktrace+jsdoc+js-extras+js-templates+json+jsonp+json5+less+markup-templating+php+phpdoc+php-extras+plsql+properties+python+sql+yaml&plugins=line-highlight+line-numbers+inline-color+toolbar+copy-to-clipboard */
 /**
  * okaidia theme for JavaScript, CSS and HTML
  * Loosely based on Monokai textmate theme by http://www.monokai.nl/
@@ -124,6 +124,66 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
+pre[data-line] {
+	position: relative;
+	padding: 1em 0 1em 3em;
+}
+
+.line-highlight {
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding: inherit 0;
+	margin-top: 1em; /* Same as .prism’s padding-top */
+
+	background: hsla(24, 20%, 50%,.08);
+	background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+
+	pointer-events: none;
+
+	line-height: inherit;
+	white-space: pre;
+}
+
+	.line-highlight:before,
+	.line-highlight[data-end]:after {
+		content: attr(data-start);
+		position: absolute;
+		top: .4em;
+		left: .6em;
+		min-width: 1em;
+		padding: 0 .5em;
+		background-color: hsla(24, 20%, 50%,.4);
+		color: hsl(24, 20%, 95%);
+		font: bold 65%/1.5 sans-serif;
+		text-align: center;
+		vertical-align: .3em;
+		border-radius: 999px;
+		text-shadow: none;
+		box-shadow: 0 1px white;
+	}
+
+	.line-highlight[data-end]:after {
+		content: attr(data-end);
+		top: auto;
+		bottom: .4em;
+	}
+
+.line-numbers .line-highlight:before,
+.line-numbers .line-highlight:after {
+	content: none;
+}
+
+pre[id].linkable-line-numbers span.line-numbers-rows {
+	pointer-events: all;
+}
+pre[id].linkable-line-numbers span.line-numbers-rows > span:before {
+	cursor: pointer;
+}
+pre[id].linkable-line-numbers span.line-numbers-rows > span:hover:before {
+	background-color: rgba(128, 128, 128, .2);
+}
+
 pre[class*="language-"].line-numbers {
 	position: relative;
 	padding-left: 3.8em;
@@ -153,7 +213,6 @@ pre[class*="language-"].line-numbers > code {
 }
 
 	.line-numbers-rows > span {
-		pointer-events: none;
 		display: block;
 		counter-increment: linenumber;
 	}
@@ -165,6 +224,40 @@ pre[class*="language-"].line-numbers > code {
 			padding-right: 0.8em;
 			text-align: right;
 		}
+
+span.inline-color-wrapper {
+	/*
+	 * The background image is the following SVG inline in base 64:
+	 *
+	 * <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2">
+	 *     <path fill="gray" d="M0 0h2v2H0z"/>
+	 *     <path fill="white" d="M0 0h1v1H0zM1 1h1v1H1z"/>
+	 * </svg>
+	 *
+	 * SVG-inlining explained:
+	 * https://stackoverflow.com/a/21626701/7595472
+	 */
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyIDIiPjxwYXRoIGZpbGw9ImdyYXkiIGQ9Ik0wIDBoMnYySDB6Ii8+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0wIDBoMXYxSDB6TTEgMWgxdjFIMXoiLz48L3N2Zz4=");
+	/* This is to prevent visual glitches where one pixel from the repeating pattern could be seen. */
+	background-position: center;
+	background-size: 110%;
+
+	display: inline-block;
+	height: 1.333ch;
+	width: 1.333ch;
+	margin: 0 .333ch;
+	box-sizing: border-box;
+	border: 1px solid white;
+	outline: 1px solid rgba(0,0,0,.5);
+	overflow: hidden;
+}
+
+span.inline-color {
+	display: block;
+	/* To prevent visual glitches again */
+	height: 120%;
+	width: 120%;
+}
 
 div.code-toolbar {
 	position: relative;
@@ -231,205 +324,146 @@ div.code-toolbar > .toolbar span:focus {
 	text-decoration: none;
 }
 
-body,
-html {
-  background: #f2f2f2;
-}
-
-pre,
-.message {
-  max-width: 960px;
-}
-
-li {margin: 10px}
-
-.hero.is-primary {
-background: linear-gradient(to top right, #524ad0 10%, #D099FA);
-}
-
-.box {
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
-}
-
-.box span.icon {
-  float: right;
-  font-size: 1.7em;
-  padding: 2rem 2rem 0 0;
-}
-
-.is-large.fab {
-  font-size: 7em;
-}
-
-.is-large.fas {
-  font-size: 5em;
-  margin-left: 0.2em;
-}
-
-.media-content {overflow: hidden;}
-
-.menu-list li a:hover {
-  background: #d9d9d9;
-}
-
-.token.number {
-  display: inline;
-  padding: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  text-align: inherit;
-  vertical-align: inherit;
-  border-radius: inherit;
-  font-weight: inherit;
-  white-space: inherit;
-  background: inherit;
-  margin: inherit;
-}
-.footer {background-color: white;}
-code[class*='language-'],
-pre[class*='language-'] {
-  color: rgb(215, 236, 255);
-  background: none;
-  font-family: 'Operator Mono', 'Roboto Mono', Menlo, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono',
-    monospace;
+/* Generated with http://k88hudson.github.io/syntax-highlighting-theme-generator/www */
+/* http://k88hudson.github.io/react-markdocs */
+/**
+ * @author k88hudson
+ *
+ * Based on prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+/*********************************************************
+* General
+*/
+pre[class*="language-"],
+code[class*="language-"] {
+  color: #222222;
+  font-size: 13px;
+  text-shadow: none;
+  font-family: 'Ubuntu Mono';
+  direction: ltr;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  word-wrap: normal;
-  line-height: 2;
-  font-size: 1rem;
-  -webkit-overflow-scrolling: touch;
-  margin: 0;
-
+  line-height: 1.5;
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
-
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
 }
-
-pre[class*='language-']::-moz-selection,
-pre[class*='language-'] ::-moz-selection,
-code[class*='language-']::-moz-selection,
-code[class*='language-'] ::-moz-selection {
+pre[class*="language-"]::selection,
+code[class*="language-"]::selection,
+pre[class*="language-"]::mozselection,
+code[class*="language-"]::mozselection {
   text-shadow: none;
-  background: #131824;
+  background: #b3d4fc;
 }
-
-pre[class*='language-']::selection,
-pre[class*='language-'] ::selection,
-code[class*='language-']::selection,
-code[class*='language-'] ::selection {
-  text-shadow: none;
-  background: #131824;
-}
-
 @media print {
-  code[class*='language-'],
-  pre[class*='language-'] {
+  pre[class*="language-"],
+  code[class*="language-"] {
     text-shadow: none;
   }
 }
-
-/* Code blocks */
-pre[class*='language-'] {
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
   overflow: auto;
-  padding: 0.75rem 1.25rem;
+  background: #ffffff;
 }
-
-pre.is-option {
-  margin: 0;
-  padding: 0;
+:not(pre) > code[class*="language-"] {
+  padding: .1em .3em;
+  border-radius: .3em;
+  color: #a3374d;
+  background: #f9f2f4;
 }
-
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
-  background: linear-gradient(-30deg, #273149, #1c273f);
-  border-radius: 0.25rem;
+/*********************************************************
+* Tokens
+*/
+.namespace {
+  opacity: .7;
 }
-
-/* Inline code */
-:not(pre) > code[class*='language-'] {
-  padding: 0.1em;
-  border-radius: 0.3em;
-  white-space: normal;
-}
-
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #8ca2d3;
+  color: #666666;
 }
-
-.token.selector,
-.token.attr-name {
-  color: #c7f683;
-}
-
 .token.punctuation {
-  color: #5ac8e3;
+  color: #666666;
 }
-
-.namespace {
-  opacity: 0.7;
-}
-
-.token.tag {
-  color: #2cefd8;
-}
-
 .token.property,
+.token.tag,
 .token.boolean,
 .token.number,
 .token.constant,
 .token.symbol,
 .token.deleted {
-  color: #85b4ff;
+  color: #800047;
 }
-
+.token.selector,
+.token.attr-name,
 .token.string,
-.language-css .token.string,
-.token.url,
-.token.attr-value,
 .token.char,
 .token.builtin,
 .token.inserted {
-  color: #ffd694;
+  color: #669900;
 }
-
 .token.operator,
 .token.entity,
+.token.url,
+.language-css .token.string,
 .style .token.string {
-  color: #ff9bbe;
+  color: #a67f59;
+  background: #ffffff;
 }
-
-.token.important,
 .token.atrule,
+.token.attr-value,
 .token.keyword {
-  color: #b7adff;
+  color: #0077aa;
 }
-
 .token.function {
-  color: #25d0e5;
+  color: #dd4a68;
 }
-
 .token.regex,
+.token.important,
 .token.variable {
-  color: #00a8d4;
+  color: #ee9900;
 }
-
+.token.important,
 .token.bold {
   font-weight: bold;
 }
 .token.italic {
   font-style: italic;
 }
-
 .token.entity {
   cursor: help;
+}
+/*********************************************************
+* Line highlighting
+*/
+pre[data-line] {
+  position: relative;
+}
+pre[class*="language-"] > code[class*="language-"] {
+  position: relative;
+  z-index: 1;
+}
+.line-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: inherit 0;
+  margin-top: 1em;
+  background: #f7ebc6;
+  box-shadow: inset 5px 0 0 #f7d87c;
+  z-index: 0;
+  pointer-events: none;
+  line-height: inherit;
+  white-space: pre;
 }
